@@ -1,0 +1,10 @@
+### Test route
+GET http://localhost:8080/test
+
+### Create short URL
+POST http://localhost:8080/urls
+Content-Type: application/json
+
+{
+  "url": "https://example.com"
+}
