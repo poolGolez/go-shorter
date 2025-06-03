@@ -16,7 +16,13 @@ func CreateShortenedUrl(url string) (*ShortUrl, error) {
 		Code:      code,
 		TargetUrl: url,
 	}
+
+	Save(shortUrl)
 	return shortUrl, nil
+}
+
+func GetShortUrl(code string) (ShortUrl, error) {
+	return FindByCode(code), nil
 }
 
 func generateCode(length int) (string, error) {

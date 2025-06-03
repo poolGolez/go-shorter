@@ -25,6 +25,7 @@ type ShortenUrlRequestBody struct {
 }
 
 func RedirectToTarget(ctx *gin.Context) {
-	// TODO: Stub for now
-	ctx.Redirect(http.StatusTemporaryRedirect, "http://example.com")
+	code := ctx.Param("code")
+	shortUrl := shorturl.FindByCode(code)
+	ctx.Redirect(http.StatusTemporaryRedirect, shortUrl.TargetUrl)
 }
