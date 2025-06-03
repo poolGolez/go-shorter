@@ -7,5 +7,8 @@ import (
 func main() {
 	server := gin.Default()
 
+	server.POST("/urls", ShortenUrl)
+	server.GET("/:code", RedirectToTarget)
+
 	server.Run()
 }
