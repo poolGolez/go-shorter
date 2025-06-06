@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5433
+      - DB_USER=go_shorter_user
+      - DB_PASSWORD=goshortuser22
+      - DB_NAME=go_shorter
+    restart: on-failure
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: go_shorter_user
+      POSTGRES_PASSWORD: goshortuser22
+      POSTGRES_DB: go_shorter
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+
+volumes:
+  postgres_data:
