@@ -11,7 +11,7 @@ services:
       - DB_HOST=db
       - DB_PORT=5432
       - DB_USER=go_shorter_user
-      - DB_PASSWORD=goshortuser22
+      - DB_PASSWORD=password
       - DB_NAME=go_shorter
     restart: on-failure
 
@@ -20,7 +20,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: go_shorter_user
-      POSTGRES_PASSWORD: goshortuser22
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: go_shorter
     volumes:
       - postgres_data:/var/lib/postgresql/data
