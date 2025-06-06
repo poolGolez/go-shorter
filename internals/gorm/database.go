@@ -1,16 +1,17 @@
-package main
+package gorm
 
 import (
 	"fmt"
 	"log"
 	"os"
 
-	shorturl "example.com/go-shorter/internals/short_url"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-func InitDb() {
+var Db *gorm.DB
+
+func DbConnect() *gorm.DB {
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=UTC",
 		os.Getenv("DB_HOST"),
@@ -27,17 +28,7 @@ func InitDb() {
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
+	Db = db
 	fmt.Println("Database connection successful!!")
-
-	fmt.Println("Migrating database tables...")
-	MigrateModels(db)
-	fmt.Println("Migration successful...")
-}
-
-func MigrateModels(db *gorm.DB) {
-	models := []interface{}{
-		&shorturl.ShortUrl{},
-	}
-
-	db.AutoMigrate(models...)
+	return db
 }
