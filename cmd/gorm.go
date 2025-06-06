@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	shorturl "example.com/go-shorter/internals/short_url"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -27,4 +28,16 @@ func InitDb() {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 	fmt.Println("Database connection successful!!")
+
+	fmt.Println("Migrating database tables...")
+	MigrateModels(db)
+	fmt.Println("Migration successful...")
+}
+
+func MigrateModels(db *gorm.DB) {
+	models := []interface{}{
+		&shorturl.ShortUrl{},
+	}
+
+	db.AutoMigrate(models...)
 }
