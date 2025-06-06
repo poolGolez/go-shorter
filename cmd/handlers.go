@@ -16,7 +16,7 @@ func ShortenUrl(ctx *gin.Context) {
 		ctx.Error(err)
 		return
 	}
-	ctx.Header("Location", "http://localhost:8080/urls/"+shortUrl.Code)
+	ctx.Header("Location", "http://localhost:8080/"+shortUrl.Code)
 	ctx.Status(http.StatusCreated)
 }
 

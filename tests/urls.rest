@@ -1,5 +1,5 @@
 ### Test route
-GET http://localhost:8080/test
+GET http://localhost:8080/:code
 
 ### Create short URL
 POST http://localhost:8080/urls
