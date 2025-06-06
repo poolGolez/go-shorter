@@ -9,7 +9,7 @@ services:
       - db
     environment:
       - DB_HOST=db
-      - DB_PORT=5433
+      - DB_PORT=5432
       - DB_USER=go_shorter_user
       - DB_PASSWORD=goshortuser22
       - DB_NAME=go_shorter
@@ -24,8 +24,7 @@ services:
       POSTGRES_DB: go_shorter
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5433:5433"
+    ports: []
 
 volumes:
   postgres_data:
