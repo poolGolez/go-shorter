@@ -21,8 +21,8 @@ func CreateShortenedUrl(url string) (*ShortUrl, error) {
 	return shortUrl, nil
 }
 
-func GetShortUrl(code string) (ShortUrl, error) {
-	return FindByCode(code), nil
+func GetShortUrl(code string) (*ShortUrl, error) {
+	return FindByCode(code)
 }
 
 func generateCode(length int) (string, error) {
